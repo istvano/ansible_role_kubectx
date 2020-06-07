@@ -1,0 +1,13 @@
+---
+# kubectx version number
+kubectx_version: '0.8.0'
+
+# SHA256 sum for the redistributable package
+kubectx_redistribution_sha256sum: ' 7acbb574f2b9cb82c03b2ceaf1d5cf312eddf1cefa12ecf6bc6bf0478511f809'
+
+# Mirror to download the kubectx from
+# https://github.com/ahmetb/kubectx/archive/v0.8.0.tar.gz
+kubectx_mirror: 'https://github.com/ahmetb/kubectx/archive'
+
+# Directory to store files downloaded for kubectx
+kubectx_download_dir: "{{ x_ansible_download_dir | default(ansible_env.HOME + '/.ansible/tmp/downloads') }}"

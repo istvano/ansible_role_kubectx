@@ -1,0 +1,21 @@
+---
+# File name of the kubectx redistributable file
+kubectx_redistribution_filename: 'v{{ kubectx_version }}.tar.gz'
+
+# File name of the kubectx download file
+kubectx_download_filename: 'v{{ kubectx_version }}.tar.gz'
+
+# Path of the kubectx staging dir
+kubectx_staging_dir: '{{ kubectx_download_dir }}/kubectx-v{{ kubectx_version }}'
+
+# Path of the kubectx staging dir
+kubectx_unarchived_dir: '{{ kubectx_download_dir }}/kubectx-v{{ kubectx_version }}/kubectx-{{ kubectx_version }}'
+
+# File name of the kubectx executable in the redistributable
+kubectx_redistribution_executable_filename: 'kubectx'
+
+# File name of the kubeenv executable in the redistributable
+kubeenv_redistribution_executable_filename: 'kubens'
+
+# Dir where kubectx should be installed
+kubectx_install_dir: '/usr/local/bin'

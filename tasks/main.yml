@@ -1,0 +1,57 @@
+---
+- name: create download directory
+  file:
+    state: directory
+    mode: 'u=rwx,go=rx'
+    dest: '{{ kubectx_download_dir }}'
+
+- name: download Kubectl archive
+  get_url:
+    url: '{{ kubectx_mirror }}/{{ kubectx_redistribution_filename }}'
+    dest: '{{ kubectx_download_dir }}/{{ kubectx_download_filename }}'
+    sha256sum: '{{ kubectx_redistribution_sha256sum }}'
+    force: no
+    use_proxy: yes
+    validate_certs: yes
+    mode: 'u=rw,go=r'
+
+- name: create the kubectx staging dir
+  file:
+    state: directory
+    mode: 'u=rwx,go=rx'
+    dest: '{{ kubectx_staging_dir }}'
+
+- name: install unarchive module dependencies (apt, yum, dnf, zypper)
+  become: yes
+  package:
+    name:
+      - tar
+      - unzip
+    state: present
+  when: ansible_pkg_mgr in ('apt', 'yum', 'dnf', 'zypper')
+
+- name: extract Kubectx
+  unarchive:
+    src: '{{ kubectx_download_dir }}/{{ kubectx_download_filename }}'
+    remote_src: yes
+    dest: '{{ kubectx_staging_dir }}'
+    creates: '{{ kubectx_unarchived_dir }}'
+
+- name: create the kubectx installation dir
+  become: yes
+  file:
+    state: directory
+    dest: '{{ kubectx_install_dir }}'
+
+- name: install kubectx and kubens
+  become: yes
+  copy:
+    src: '{{ item.src }}'
+    remote_src: yes
+    dest: '{{ item.dest }}'
+    owner: root
+    group: root
+    mode: 'u=rwx,go=rx'
+  with_items:
+    - { src: '{{ kubectx_unarchived_dir }}/{{ kubectx_redistribution_executable_filename }}', dest: '{{ kubectx_install_dir }}/kubectx' }
+    - { src: '{{ kubectx_unarchived_dir }}/{{ kubeenv_redistribution_executable_filename }}', dest: '{{ kubectx_install_dir }}/kubens' }

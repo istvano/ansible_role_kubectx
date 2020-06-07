@@ -38,8 +38,8 @@ The following variables will change the behavior of this role (default values
 are shown below):
 
 ```yaml
-# k9s version number
-k9s_version: '0.8.0'
+# kubectx version number
+kubectx_version: '0.25.0'
 
 
 Example Playbook
