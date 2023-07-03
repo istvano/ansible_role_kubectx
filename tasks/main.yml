@@ -36,12 +36,14 @@
     remote_src: yes
     dest: '{{ kubectx_staging_dir }}'
     creates: '{{ kubectx_unarchived_dir }}'
+    mode: 'u=rwx,go=rx'
 
 - name: create the kubectx installation dir
   become: yes
   file:
     state: directory
     dest: '{{ kubectx_install_dir }}'
+    mode: 'u=rwx,go=rx'
 
 - name: install kubectx and kubens
   become: yes

@@ -1,9 +1,9 @@
 ---
 # kubectx version number
-kubectx_version: '0.8.0'
+kubectx_version: '0.9.4'
 
 # SHA256 sum for the redistributable package
-kubectx_redistribution_sha256sum: ' 7acbb574f2b9cb82c03b2ceaf1d5cf312eddf1cefa12ecf6bc6bf0478511f809'
+kubectx_redistribution_sha256sum: '91e6b2e0501bc581f006322d621adad928ea3bd3d8df6612334804b93efd258c'
 
 # Mirror to download the kubectx from
 # https://github.com/ahmetb/kubectx/archive/v0.8.0.tar.gz

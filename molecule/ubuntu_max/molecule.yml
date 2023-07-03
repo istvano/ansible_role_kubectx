@@ -5,12 +5,15 @@ dependency:
 driver:
   name: docker
 
-lint:
-  name: yamllint
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8
 
 platforms:
   - name: ansible_role_kubectx_ubuntu_max
-    image: ubuntu:18.04
+    image: ubuntu:20.04
     dockerfile: ../default/Dockerfile.j2
 
 provisioner:

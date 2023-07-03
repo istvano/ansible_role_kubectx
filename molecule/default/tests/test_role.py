@@ -2,8 +2,6 @@ import os
 
 import testinfra.utils.ansible_runner
 
-import re
-
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
@@ -21,6 +19,7 @@ def test_file(host):
     assert installed_file.is_file
     assert installed_file.user == 'root'
     assert installed_file.group == 'root'
+
 
 def test_file2(host):
     installed_file = host.file('/usr/local/bin/kubens')
